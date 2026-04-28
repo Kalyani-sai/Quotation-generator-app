@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>QuickQuote Generator</title>
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1>✨ QuickQuote AI</h1>
+<p>Create professional quotations instantly</p>
+<input type="file" id="logo" accept="image/*">
+  <input type="text" id="company" placeholder="Company Name">
+  <input type="date" id="date">
+  <input type="text" id="invoice" placeholder="Invoice Number">
+  <input type="text" id="client" placeholder="Client Name">
+  <input type="text" id="service" placeholder="Service Description">
+  <input type="number" id="price" placeholder="Price">
+  <input type="number" id="gst" placeholder="GST % (e.g. 18)">
+
+  <button onclick="generateQuote()">Generate Quote</button>
+  <button onclick="downloadPDF()">Download PDF</button>
+
+  <div id="output"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
