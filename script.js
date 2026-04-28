@@ -39,62 +39,63 @@ function downloadPDF() {
   let gstAmount = (price * gst) / 100;
   let total = Number(price) + Number(gstAmount);
 
-  // 🟣 HEADER BOX
-  doc.setFillColor(90, 50, 200); // purple
+  // 🟣 HEADER
+  doc.setFillColor(40, 40, 120);
   doc.rect(0, 0, 210, 30, "F");
 
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(18);
   doc.text(company || "Your Company", 20, 18);
 
-  // Reset color
+  doc.setFontSize(10);
+  doc.text("INVOICE", 160, 18);
+
+  // Reset text color
   doc.setTextColor(0, 0, 0);
 
-  // 📄 INVOICE DETAILS (Right side)
+  // 📄 Invoice details (right side)
   doc.setFontSize(10);
-  doc.text("Invoice No: " + invoice, 140, 15);
-  doc.text("Date: " + date, 140, 22);
+  doc.text("Invoice No: " + invoice, 140, 40);
+  doc.text("Date: " + date, 140, 48);
 
-  // Line
-  doc.line(20, 35, 190, 35);
+  // 👤 Client box
+  doc.setDrawColor(200);
+  doc.rect(20, 40, 100, 25);
+  doc.text("Bill To:", 22, 48);
+  doc.text(client, 22, 58);
 
-  // 👤 CLIENT SECTION
-  doc.setFontSize(12);
-  doc.text("Bill To:", 20, 50);
+  // 📊 Table Header Box
+  doc.setFillColor(240, 240, 240);
+  doc.rect(20, 75, 170, 10, "F");
+
   doc.setFontSize(11);
-  doc.text(client, 20, 58);
+  doc.text("Description", 25, 82);
+  doc.text("Amount", 150, 82);
 
-  // 📊 TABLE HEADER
-  doc.setFontSize(12);
-  doc.text("Description", 20, 80);
-  doc.text("Amount", 150, 80);
-
-  doc.line(20, 82, 190, 82);
-
-  // 📊 DATA ROW
-  doc.setFontSize(11);
-  doc.text(service, 20, 95);
+  // 📊 Table Row
+  doc.text(service, 25, 95);
   doc.text("₹ " + price, 150, 95);
 
-  // GST
-  doc.text("GST (" + gst + "%)", 20, 110);
+  // GST Row
+  doc.text("GST (" + gst + "%)", 25, 110);
   doc.text("₹ " + gstAmount.toFixed(2), 150, 110);
 
-  // Divider
+  // Line
   doc.line(20, 120, 190, 120);
 
-  // 🟢 TOTAL BOX
-  doc.setFillColor(240, 240, 240);
+  // 🟢 TOTAL HIGHLIGHT BOX
+  doc.setFillColor(220, 255, 220);
   doc.rect(20, 125, 170, 15, "F");
 
   doc.setFontSize(13);
   doc.text("Total", 25, 135);
   doc.text("₹ " + total.toFixed(2), 150, 135);
 
-  // FOOTER
+  // Footer
   doc.setFontSize(10);
+  doc.setTextColor(100);
   doc.text("Thank you for your business!", 20, 170);
 
-  // SAVE
+  // Save
   doc.save("invoice.pdf");
-}
+    }
